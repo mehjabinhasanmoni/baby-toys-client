@@ -1,7 +1,10 @@
 import { FaHome } from "react-icons/fa";
 
 
+
+
 const Header = () => {
+
     return (
         <div className='container mx-auto px-8'>
 
