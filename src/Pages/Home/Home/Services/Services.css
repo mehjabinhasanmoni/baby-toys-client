@@ -1,0 +1,13 @@
+.service-img {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    height: 70px;
+    width: 70px;
+    background: #82e3bb;
+    border-radius: 50%;
+    line-height: 50px;
+    overflow: hidden;
+    transition: all .5s;
+}
