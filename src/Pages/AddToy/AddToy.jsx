@@ -125,9 +125,9 @@ const AddToy = () => {
             <option disabled selected>
               Select Sub-Category
             </option>
-            <option value="1">Science kits</option>
-            <option value="2">Math learning toys</option>
-            <option value="3">Engineering kits</option>
+            <option value="Science kits">Science kits</option>
+            <option value="Math learning toys">Math learning toys</option>
+            <option value="Engineering kits">Engineering kits</option>
           </select>
         </div>
         <div className="form-control">

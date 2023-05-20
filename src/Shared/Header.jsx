@@ -46,9 +46,11 @@ const Header = () => {
                   <FaHome></FaHome> Home
                 </a>
               </li>
+              <Link to="/alltoys">
               <li tabIndex={0}>
                 <a className="justify-between">All Toys</a>
               </li>
+              </Link>
               <li>
                 <a>My Toys</a>
               </li>
@@ -100,9 +102,11 @@ const Header = () => {
                 <FaHome></FaHome>Home
               </a>
             </li>
+            <Link to="/alltoys">
             <li tabIndex={0}>
               <a>All Toys</a>
             </li>
+            </Link>
             <li>
               <a>My Toys</a>
             </li>
