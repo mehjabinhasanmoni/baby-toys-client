@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -15,13 +16,15 @@ const Login = () => {
 
     // Sign In User
     signIn(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
       })
-      .catch(error => {
-        console.log(error);
-      })
+      .catch((error) => {
+        console.log(error.message);
+        setError(error.message);
+      });
   };
 
   return (
@@ -67,7 +70,10 @@ const Login = () => {
                 />
               </div>
             </form>
-            <p className="btn btn-outline btn-secondary"> <FaGoogle></FaGoogle> &nbsp;&nbsp;SignIn with Google</p>
+            <p className="btn btn-outline btn-secondary">
+              {" "}
+              <FaGoogle></FaGoogle> &nbsp;&nbsp;SignIn with Google
+            </p>
 
             <p className="mt-5">
               New an Account?{" "}
@@ -75,6 +81,28 @@ const Login = () => {
                 Register
               </Link>
             </p>
+
+            {/* Error Message */}
+
+            <div className="alert alert-warning shadow-lg">
+              <div>
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="stroke-current flex-shrink-0 h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{error}</span>
+              </div>  
+              
+            </div>
           </div>
         </div>
       </div>

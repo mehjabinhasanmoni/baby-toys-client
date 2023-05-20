@@ -1,13 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
 
   const {createUser} = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
     const handleRegister = (event) => {
         event.preventDefault();
+        setSuccess("");
         const form = event.target;
         const name = form.name.value;
         const photo = form.photo.value;
@@ -20,9 +23,13 @@ const Register = () => {
           .then(result =>{
             const user = result.user;
             console.log(user);
+            setError("");
+            event.target.reset();
+            setSuccess("User has created successfully");
           })
           .catch(error=>{
-            console.log(error);
+            console.log(error.message);
+            setError(error.message);
           })
       };
 
@@ -97,6 +104,11 @@ const Register = () => {
                    register
                 </Link>
               </p>
+
+              {/* Display Error & success message */}
+
+              <p> {success}</p>
+              <p> {error}</p>
             </div>
           </div>
         </div>

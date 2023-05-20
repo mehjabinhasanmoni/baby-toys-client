@@ -2,7 +2,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer mt-5 p-5 bg-base-200 text-base-content border-t-8 border-white shadow-2xl shadow-gray-700">
+        <footer className="footer mt-5 p-5 bg-base-200 text-base-content border-t-8 border-white">
         <div>
         <div className="w-28">
             <img className="w-full" src="https://i.ibb.co/j4qTmpz/logo.webp" alt="logo" />

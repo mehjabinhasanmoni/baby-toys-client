@@ -1,7 +1,21 @@
+import { useContext } from "react";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Header = () => {
+
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogOut = ()  => {
+    logOut()
+    .then( () => {})
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+
   return (
     <div className="container mx-auto px-8">
       <div className="navbar bg-base-100">
@@ -38,9 +52,11 @@ const Header = () => {
               <li>
                 <a>My Toys</a>
               </li>
+              <Link to ="/addtoy">
               <li>
                 <a>Add a Toy</a>
               </li>
+              </Link>
               <li>
                 <a>Blog</a>
               </li>
@@ -50,13 +66,16 @@ const Header = () => {
                   <img src="https://i.ibb.co/tMmcFSP/nahid.jpg" />
                 </div>
               </li>
-              <Link to="/login">
-                <li>
-                  <button className="w-full btn btn-active btn-accent mr-2 my-2">
-                    Login
-                  </button>
-                </li>
-              </Link>
+              { user?.email ? <li><button onClick={handleLogOut}>Log Out</button></li>
+             : 
+             <Link to="/login">
+              <li>
+                <button className="btn btn-active btn-accent mr-2">
+                  Login
+                </button>
+              </li>
+            </Link>
+            }
               <Link to="/register">
                 <li>
                   <button className="w-full btn btn-active btn-accent">
@@ -87,9 +106,11 @@ const Header = () => {
             <li>
               <a>My Toys</a>
             </li>
+            <Link to ="/addtoy">
             <li>
               <a>Add a Toy</a>
             </li>
+            </Link>
             <li>
               <a>Blog</a>
             </li>
@@ -99,13 +120,18 @@ const Header = () => {
                 <img src="https://i.ibb.co/tMmcFSP/nahid.jpg" />
               </div>
             </li>
-            <Link to="/login">
+            { user?.email ? <li><button onClick={handleLogOut}>Log Out</button></li>
+             : 
+             <Link to="/login">
               <li>
                 <button className="btn btn-active btn-accent mr-2">
                   Login
                 </button>
               </li>
             </Link>
+            }
+            
+
             <Link to="/register">
               <li>
                 <button className="btn btn-active btn-accent">Register</button>
