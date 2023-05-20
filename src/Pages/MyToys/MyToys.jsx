@@ -14,6 +14,25 @@ const MyToys = () => {
       .then((data) => setMyToys(data));
   }, []);
 
+  const handleDelete = id => {
+    const proceed = confirm('Are you sure you want to delete');
+    if(proceed) {
+        fetch(`http://localhost:5001/myToys/${id}`,
+        {
+            method : 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.deletedCount > 0){
+                alert('deleted success');
+                const remaining = myToys.filter(myToy => myToy._id !== id);
+                setMyToys(remaining)
+            }
+        })
+         }
+    };
+
   return (
     <div>
       <h2>My Toys</h2>
@@ -22,6 +41,7 @@ const MyToys = () => {
           {/* head */}
           <thead>
             <tr>
+              <th></th>
               <th>Toy Photo</th>
               <th>Toy Name</th>
               <th>Price</th>
@@ -31,7 +51,9 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map((myToy) => (
-              <MyToysRow key={myToy._id} myToy={myToy}></MyToysRow>
+              <MyToysRow key={myToy._id} 
+              myToy={myToy}
+              handleDelete={handleDelete}></MyToysRow>
             ))}
           </tbody>
         </table>
