@@ -26,8 +26,8 @@ const About = () => {
                     <p>We are try to given a very first delivery service for our cute customers and must be make sure that we also recive a return values whics is choice by baby.</p>
                 </div>
                 <div data-aos="fade-down"
-     data-aos-easing="linear"
-     data-aos-duration="1500" className="about-img border-4 border-white shadow-2xl w-1/2 rounded">
+                    data-aos-easing="linear"
+                    data-aos-duration="1500" className="about-img border-4 border-white shadow-2xl w-1/2 rounded">
                     <img className="w-full" src="https://i.ibb.co/47PbR7p/g5.jpg" alt="" />
                 </div>
             </div>
