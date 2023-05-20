@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
   const allToys = useLoaderData();
@@ -63,7 +63,7 @@ const AllToys = () => {
           <tbody>
            
            {/* Data show */}
-           
+
            {allToys.map((toy,index) =>
              <tr key={index}>
             <td>
@@ -79,7 +79,11 @@ const AllToys = () => {
             <td>{toy.qty}</td>
 
             <th>
-              <button className="btn btn-success">details</button>
+              <Link to ={`/toy/${toy._id}`}>
+              <button className="btn btn-success">
+                details
+                </button>
+              </Link>
             </th>
           </tr>
            
