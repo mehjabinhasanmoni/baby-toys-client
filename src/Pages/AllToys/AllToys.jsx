@@ -2,21 +2,17 @@ import { useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
   const allToys = useLoaderData();
-  const {
-    _id,
-    toysName,
-    toysPhoto,
-    sellerName,
-    sellerEmail,
-    subcategory,
-    qty,
-    price,
-    ratings,
-    description,
-  } = allToys;
+ 
+
+  console.log('All Toys:', allToys);
+
+  // const toyID = allToys.map(toy => {
+  //   console.log(toy.toysName);
+  // })
 
   return (
     <div>
+       
       {/* Search Option */}
 
       <div className="mt-10 p-5 form-control container mx-auto">
@@ -48,6 +44,7 @@ const AllToys = () => {
       <br />
 
       {/* Tabular Form */}
+     
 
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -64,27 +61,31 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            {
-            allToys.map(toy => (
-              <tr>
-                <td>
-                    <div className="mask mask-squircle w-12 h-12">
-                        <img src={toy.toysPhoto} alt="" />
-                
-                    </div>
-                 </td>   
-                <td>{toy.sellerName?toy.sellerName : 'N/A'}</td>
-                <td>{toy.toysName}</td>
-                <td>{toy.subcategory}</td>
-                <td>{toy.price}</td>
-                <td>{toy.qty}</td>
+           
+           {/* Data show */}
+           
+           {allToys.map((toy,index) =>
+             <tr key={index}>
+            <td>
+                <div className="mask mask-squircle w-12 h-12 border border-gray-700 ">
+                    <img src={toy.toysPhoto} alt="" />
+            
+                </div>
+             </td>   
+            <td>{toy.sellerName?toy.sellerName : 'N/A'}</td>
+            <td>{toy.toysName}</td>
+            <td>{toy.subcategory}</td>
+            <td>{toy.price}</td>
+            <td>{toy.qty}</td>
 
-                <th>
-                  <button className="btn btn-success">details</button>
-                </th>
-              </tr>
-            ))}
+            <th>
+              <button className="btn btn-success">details</button>
+            </th>
+          </tr>
+           
+          )}
+         
+    
           </tbody>
         </table>
       </div>
