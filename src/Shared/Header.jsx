@@ -107,9 +107,15 @@ const Header = () => {
               <a>All Toys</a>
             </li>
             </Link>
+
+           <Link to="/mytoys">
             <li>
               <a>My Toys</a>
             </li>
+            </Link>
+            
+
+
             <Link to ="/addtoy">
             <li>
               <a>Add a Toy</a>
