@@ -7,7 +7,7 @@ const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
 
-  const url = `http://localhost:5001/myToys?sellerEmail=${user?.email}`;
+  const url = `https://baby-toys-server-production.up.railway.app/myToys?sellerEmail=${user?.email}`;
 
   useEffect(() => {
     fetch(url)
@@ -30,7 +30,7 @@ const MyToys = () => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        fetch(`http://localhost:5001/myToys/${id}`,
+        fetch(`https://baby-toys-server-production.up.railway.app/myToys/${id}`,
         {
             method : 'DELETE'
         })

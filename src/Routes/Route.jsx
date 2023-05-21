@@ -9,6 +9,8 @@ import SingleToys from "../Pages/SingleToys/SingleToys";
 import PrivateRoute from "./PrivateRoute";
 import MyToys from "../Pages/MyToys/MyToys";
 import UpdateToys from "../Pages/MyToys/UpdateToys";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Blog from "../Pages/Blog/Blog";
 
 
 
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
     {
         path : '/',
         element : <Main></Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children : [
             {
                 path : '/',
@@ -36,12 +39,12 @@ const router = createBrowserRouter([
             {
                 path : '/alltoys',
                 element : <AllToys></AllToys>,
-                loader : () => fetch('http://localhost:5001/allToys')
+                loader : () => fetch('https://baby-toys-server-production.up.railway.app/allToys')
             },
             {
                 path : '/toy/:id',
                 element : <PrivateRoute><SingleToys></SingleToys></PrivateRoute>,
-                loader : ({params}) => fetch(`http://localhost:5001/toy/${params.id}`)
+                loader : ({params}) => fetch(`https://baby-toys-server-production.up.railway.app/toy/${params.id}`)
                 
             },
             {
@@ -52,7 +55,11 @@ const router = createBrowserRouter([
             {
                 path : '/updatetoy/:id',
                 element : <UpdateToys></UpdateToys>,
-                loader : ({params}) => fetch(`http://localhost:5001/myToys/${params.id}`)
+                loader : ({params}) => fetch(`https://baby-toys-server-production.up.railway.app/myToys/${params.id}`)
+            },
+            {
+                path : '/blog',
+                element : <Blog></Blog>
             }
         ]
     }

@@ -21,7 +21,7 @@ const UpdateToys = () => {
         }
 
      // Data send
-     fetch(`http://localhost:5001/myToys/${_id}`, {
+     fetch(`https://baby-toys-server-production.up.railway.app/myToys/${_id}`, {
         method : 'PUT',
         headers : {
             'content-type': 'application/json'
