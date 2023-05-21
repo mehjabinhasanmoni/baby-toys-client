@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const MyToysRow = ({ myToy, handleDelete, handleConfirm }) => {
-  const { _id, toysName, toysPhoto, price, qty, description, status } = myToy;
+const MyToysRow = ({ myToy, handleDelete }) => {
+  const { _id, toysName, toysPhoto, price, qty, description } = myToy;
 
   return (
     <tr>
@@ -36,13 +36,11 @@ const MyToysRow = ({ myToy, handleDelete, handleConfirm }) => {
       <td>{qty}</td>
       <td>{description}</td>
 
-      {status === "confirm" ? (
-        <span>Confired</span>
-      ) : (
+     
         <th>
             <Link to={`/updatetoy/${_id}`}>
             <button
-                onClick={() => handleConfirm(_id)}
+                
                 className="btn btn-success"
             >
                 Update
@@ -50,7 +48,7 @@ const MyToysRow = ({ myToy, handleDelete, handleConfirm }) => {
           </Link>
           
         </th>
-      )}
+      
     </tr>
   );
 };

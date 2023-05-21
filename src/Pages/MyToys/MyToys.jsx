@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import MyToysRow from "./MyToysRow";
+import Swal from 'sweetalert2';
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -17,8 +18,18 @@ const MyToys = () => {
 //   Delete
 
   const handleDelete = id => {
-    const proceed = confirm('Are you sure you want to delete');
-    if(proceed) {
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
         fetch(`http://localhost:5001/myToys/${id}`,
         {
             method : 'DELETE'
@@ -27,48 +38,29 @@ const MyToys = () => {
         .then(data => {
             console.log(data)
             if(data.deletedCount > 0){
-                alert('deleted success');
+                Swal.fire(
+                      'Deleted!',
+                      'Your file has been deleted.',
+                      'success'
+                    )
+                  }
+                })
+      }
+
                 const remaining = myToys.filter(myToy => myToy._id !== id);
                 setMyToys(remaining)
-            }
+            
         })
          }
-    };
+   
 
-    // Update
+    
 
-    const handleConfirm = id => {
-        const proceed = confirm('Are you sure you want to delete');
-        if(proceed) {
-            fetch(`http://localhost:5001/myToys/${id}`,
-            {
-                method : 'PATCH',
-                headers : {
-                    'content-type':'application/json'
-                },
-                body:JSON.stringify({status: 'confirm'})
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if(data.modifiedCount > 0){
-                    alert('update success');
-                    const remaining = myToys.filter(myToy => myToy._id !== id);
-                    const updated = myToys.find(myToy => myToy._id === id);
-                    updated.status = 'updated';
-                    const newMyToys = [updated, ...remaining];
-                    setMyToys(newMyToys);
 
-                }
-
-            })
-             }
-
-    }
 
   return (
     <div>
-      <h2>My Toys</h2>
+      
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}
@@ -87,7 +79,7 @@ const MyToys = () => {
               <MyToysRow key={myToy._id} 
               myToy={myToy}
               handleDelete={handleDelete}
-              handleConfirm={handleConfirm}></MyToysRow>
+              ></MyToysRow>
             ))}
           </tbody>
         </table>
