@@ -41,19 +41,24 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
+              <Link to="/">
               <li>
                 <a>
                   <FaHome></FaHome> Home
                 </a>
               </li>
+              </Link>
               <Link to="/alltoys">
               <li tabIndex={0}>
                 <a className="justify-between">All Toys</a>
               </li>
               </Link>
+              <Link to="/mytoys">
               <li>
                 <a>My Toys</a>
               </li>
+              </Link>
+              
               <Link to ="/addtoy">
               <li>
                 <a>Add a Toy</a>
@@ -99,11 +104,13 @@ const Header = () => {
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
+          <Link to="/">
             <li>
               <a>
                 <FaHome></FaHome>Home
               </a>
             </li>
+            </Link>
             <Link to="/alltoys">
             <li tabIndex={0}>
               <a>All Toys</a>
