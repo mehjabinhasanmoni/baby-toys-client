@@ -40,7 +40,7 @@ const MyToysRow = ({ myToy, handleDelete, handleConfirm }) => {
         <span>Confired</span>
       ) : (
         <th>
-            <Link to={`/${_id}`}>
+            <Link to={`/updatetoy/${_id}`}>
             <button
                 onClick={() => handleConfirm(_id)}
                 className="btn btn-success"
