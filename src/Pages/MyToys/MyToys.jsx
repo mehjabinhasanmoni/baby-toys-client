@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import MyToysRow from "./MyToysRow";
 import Swal from 'sweetalert2';
+import useTitle from "../../Hooks/useTitle";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  useTitle('My Toys');
 
   const url = `https://baby-toys-server-production.up.railway.app/myToys?sellerEmail=${user?.email}`;
 

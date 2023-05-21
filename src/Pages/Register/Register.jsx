@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import useTitle from "../../Hooks/useTitle";
 
 
 const Register = () => {
@@ -13,6 +14,7 @@ const Register = () => {
    // Location Hooks
    const navigate = useNavigate();
    const location = useLocation();
+   useTitle('Register');
  
    // Generating Url
    const from = location.state?.from?.pathname || "/";
