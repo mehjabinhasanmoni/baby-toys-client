@@ -15,7 +15,7 @@ const About = () => {
 
     return (
         <div>
-            <div className="container mx-auto p-10 m-10 flex justify-center items-center gap-10">
+            <div className="container mx-auto p-10 m-10 flex-col justify-center items-center gap-10 md:flex lg:flex">
 
                 <div >
                     
