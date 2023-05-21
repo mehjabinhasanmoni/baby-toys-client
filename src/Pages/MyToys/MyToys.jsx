@@ -14,6 +14,8 @@ const MyToys = () => {
       .then((data) => setMyToys(data));
   }, []);
 
+//   Delete
+
   const handleDelete = id => {
     const proceed = confirm('Are you sure you want to delete');
     if(proceed) {
@@ -32,6 +34,37 @@ const MyToys = () => {
         })
          }
     };
+
+    // Update
+
+    const handleConfirm = id => {
+        const proceed = confirm('Are you sure you want to delete');
+        if(proceed) {
+            fetch(`http://localhost:5001/myToys/${id}`,
+            {
+                method : 'PATCH',
+                headers : {
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify({status: 'confirm'})
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.modifiedCount > 0){
+                    alert('update success');
+                    const remaining = myToys.filter(myToy => myToy._id !== id);
+                    const updated = myToys.find(myToy => myToy._id === id);
+                    updated.status = 'updated';
+                    const newMyToys = [updated, ...remaining];
+                    setMyToys(newMyToys);
+
+                }
+
+            })
+             }
+
+    }
 
   return (
     <div>
@@ -53,7 +86,8 @@ const MyToys = () => {
             {myToys.map((myToy) => (
               <MyToysRow key={myToy._id} 
               myToy={myToy}
-              handleDelete={handleDelete}></MyToysRow>
+              handleDelete={handleDelete}
+              handleConfirm={handleConfirm}></MyToysRow>
             ))}
           </tbody>
         </table>
