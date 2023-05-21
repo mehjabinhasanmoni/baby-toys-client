@@ -11,6 +11,7 @@ import MyToys from "../Pages/MyToys/MyToys";
 import UpdateToys from "../Pages/MyToys/UpdateToys";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Blog from "../Pages/Blog/Blog";
+import Gallery from "../Pages/Home/Home/Gallery/Gallery";
 
 
 
@@ -60,7 +61,8 @@ const router = createBrowserRouter([
             {
                 path : '/blog',
                 element : <Blog></Blog>
-            }
+            },
+          
         ]
     }
 ]);

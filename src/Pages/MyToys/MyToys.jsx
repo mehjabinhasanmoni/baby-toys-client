@@ -7,15 +7,18 @@ import useTitle from "../../Hooks/useTitle";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [toggleSort, setToggleSort] = useState(false);
+
   useTitle('My Toys');
 
-  const url = `https://baby-toys-server-production.up.railway.app/myToys?sellerEmail=${user?.email}`;
+  
 
   useEffect(() => {
+    const url = `https://baby-toys-server-production.up.railway.app/myToys?sellerEmail=${user?.email}&sort=${toggleSort?1:-1}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setMyToys(data));
-  }, []);
+  }, [toggleSort]);
 
 //   Delete
 
@@ -61,9 +64,12 @@ const MyToys = () => {
 
 
   return (
-    <div>
+    <div className="container mx-auto">
       
       <div className="overflow-x-auto w-full">
+        <div className=" m-10 flex justify-center items-center">
+          <button onClick={() =>setToggleSort(!toggleSort)} className="btn btn-secondary">Sort by Price {toggleSort?'DEC' : 'ASC'}</button>
+        </div>
         <table className="table w-full">
           {/* head */}
           <thead>
@@ -74,6 +80,7 @@ const MyToys = () => {
               <th>Price</th>
               <th>Available Quantity</th>
               <th>Description</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

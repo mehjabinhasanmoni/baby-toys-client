@@ -36,7 +36,7 @@ const AddToy = () => {
     console.log(toysEntry);
 
     // Data send
-    fetch('http://localhost:5001/toysCollection', {
+    fetch('https://baby-toys-server-production.up.railway.app/toysCollection', {
         method : 'POST',
         headers : {
             'content-type': 'application/json'
