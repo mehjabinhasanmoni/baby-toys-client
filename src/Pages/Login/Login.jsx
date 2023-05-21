@@ -1,11 +1,19 @@
 import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleProvider } = useContext(AuthContext);
   const [error, setError] = useState("");
+
+  // Location Hooks
+  const navigate = useNavigate();
+  const location = useLocation();
+
+   // Generating Url
+   const from = location.state?.from?.pathname || "/";
+
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -20,12 +28,27 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
+
+        navigate(from, { replace: true });
+
       })
       .catch((error) => {
         console.log(error.message);
         setError(error.message);
       });
   };
+
+    // Google Sign In
+    const handleGoogleSignIn = async () => {
+      googleProvider()
+        .then((result) => {
+          const googleUser = result.user;
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          console.log("Google sign in error", error);
+        });
+    };
 
   return (
     <div className="hero min-h-screen bg-base-200  mt-5 bg-[url('https://i.ibb.co/f1bJCs9/g7.jpg')] bg-fixed bg-cover bg-no-repeat bg-center">
@@ -70,7 +93,7 @@ const Login = () => {
                 />
               </div>
             </form>
-            <p className="btn btn-outline btn-secondary">
+            <p onClick={handleGoogleSignIn} className="btn btn-outline btn-secondary">
               {" "}
               <FaGoogle></FaGoogle> &nbsp;&nbsp;SignIn with Google
             </p>
