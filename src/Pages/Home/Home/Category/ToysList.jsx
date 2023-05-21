@@ -7,7 +7,7 @@ const ToysList = ({ subcategory, toys }) => {
   const location = useLocation();
 
   return (
-    <div className="container mx-auto grid grid-cols-4 gap-20">
+    <div className="container mx-auto grid grid-cols-1 gap-20 md:grid :grid-cols-1 lg:grid lg:grid-cols-4">
      
       {/* row */}
 

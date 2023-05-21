@@ -13,7 +13,7 @@ const Category = ({ toys }) => {
   return (
     
     <div className="container mx-auto mt-20">
-          <p className="text-[#ff1276] text-5xl tracking-[.25em] mb-3">Category</p>          
+          <p className="text-[#ff1276] text-5xl tracking-[.25em] mb-3 text-center">Category</p>          
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList>
           {uniqueToys.map((toy) =>
