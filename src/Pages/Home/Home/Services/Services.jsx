@@ -6,10 +6,10 @@ const Services = () => {
             <div className="container mx-auto text-center p-10 m-10">
                     <p className="text-[#ff1276] text-xl tracking-[.25em] mb-3">The Products</p>
                     <p className="font-bold text-5xl">Our Services</p>
-                <div className="services-list flex justify-center items-center gap-10 m-10">
+                <div className="services-list flex-col justify-center items-center gap-10 m-10 md:flex lg:flex">
                     <div className="support">
                         {/* Services - one */}
-                        <div className="services-one flex justify-center items-center m-5 p-2 text-left md:flex lg:flex">
+                        <div className="services-one flex justify-center items-center m-5 p-2 text-left ">
 
                             
                             <div className="list-image service-img">
