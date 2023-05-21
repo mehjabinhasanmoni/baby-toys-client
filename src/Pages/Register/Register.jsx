@@ -1,12 +1,21 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+
 
 const Register = () => {
 
   const {createUser} = useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+   // Location Hooks
+   const navigate = useNavigate();
+   const location = useLocation();
+ 
+   // Generating Url
+   const from = location.state?.from?.pathname || "/";
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -18,7 +27,7 @@ const Register = () => {
         const password = form.password.value;
         console.log(name, photo, email, password);
 
-        // Create User
+        // Create User and update user name & photo
         createUser(email, password)
           .then(result =>{
             const user = result.user;
@@ -26,12 +35,33 @@ const Register = () => {
             setError("");
             event.target.reset();
             setSuccess("User has created successfully");
+
+            updateProfileUser(result.user, name, photo);
+
+
           })
           .catch(error=>{
             console.log(error.message);
             setError(error.message);
           })
       };
+
+      // Update Profile
+  const updateProfileUser = (user, name, photourl) => {
+    updateProfile(user, {
+      displayName: name,
+      photoURL: photourl,
+    })
+      .then(() => {
+        console.log("username & Photo updated");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+
 
     return (
         <div className="hero min-h-screen bg-base-200  mt-5 bg-[url('https://i.ibb.co/M2xt6Fd/g1.jpg')] bg-fixed bg-cover bg-no-repeat bg-center">
@@ -50,6 +80,7 @@ const Register = () => {
                     name="name"
                     placeholder="name"
                     className="input input-bordered"
+                    required
                   />
                 </div>
                 <div className="form-control">
@@ -61,6 +92,7 @@ const Register = () => {
                     name="photo"
                     placeholder="Photo"
                     className="input input-bordered"
+                    required
                   />
                 </div>
                 <div className="form-control">
@@ -72,6 +104,7 @@ const Register = () => {
                     name="email"
                     placeholder="email"
                     className="input input-bordered"
+                    required
                   />
                 </div>
                 <div className="form-control">
@@ -83,6 +116,7 @@ const Register = () => {
                     name="password"
                     placeholder="password"
                     className="input input-bordered"
+                    required
                   />
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
