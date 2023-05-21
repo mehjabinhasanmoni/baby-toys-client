@@ -1,20 +1,19 @@
 import { useContext } from "react";
 import { FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const current = useLocation();
 
-  const {user, logOut} = useContext(AuthContext);
-
-  const handleLogOut = ()  => {
+  const handleLogOut = () => {
     logOut()
-    .then( () => {})
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="container mx-auto px-8">
@@ -41,57 +40,72 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <Link to="/">
-              <li>
-                <a>
-                  <FaHome></FaHome> Home
-                </a>
-              </li>
-              </Link>
-              <Link to="/alltoys">
-              <li tabIndex={0}>
-                <a className="justify-between">All Toys</a>
-              </li>
-              </Link>
-              <Link to="/mytoys">
-              <li>
-                <a>My Toys</a>
-              </li>
-              </Link>
               
-              <Link to ="/addtoy">
-              <li>
-                <a>Add a Toy</a>
-              </li>
-              </Link>
-              <Link to ="/blog">
-              <li>
-                <a>Blog</a>
-              </li>
-              </Link>
+                <li>
+                <Link to="/">
+                   Home 
+                  </Link>
+                </li>
+              
+              
+                <li>
+                <Link to="/alltoys">
+                  All Toys
+                  </Link>
+                </li>
+             
+              
+                <li>
+                <Link to="/mytoys">
+                  My Toys
+                  </Link>
+                </li>
+              
+
+              
+                <li>
+                <Link to="/addtoy">
+                  Add a Toy
+                  </Link>
+                </li>
+             
+              
+                <li>
+                <Link to="/blog">
+                  Blog
+                  </Link>
+                </li>
+             
 
               <li tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img src="https://i.ibb.co/tMmcFSP/nahid.jpg" />
                 </div>
               </li>
-              { user?.email ? <li><button onClick={handleLogOut}>Log Out</button></li>
-             : 
-             <Link to="/login">
-              <li>
-                <button className="btn btn-active btn-accent mr-2">
-                  Login
-                </button>
-              </li>
-            </Link>
-            }
-              <Link to="/register">
+              {user?.email ? (
                 <li>
+                  <button onClick={handleLogOut}>Log Out</button>
+                </li>
+              ) : (
+                
+                  <li>
+                    <Link to="/login">
+                    <button className="btn btn-active btn-accent mr-2">
+                      Login
+                    </button>
+                    </Link>
+                  </li>
+               
+              )}
+             
+                <li>
+                <Link to="/register">
                   <button className="w-full btn btn-active btn-accent">
                     Register
                   </button>
+                  </Link>
                 </li>
-              </Link>
+             
             </ul>
           </div>
           <div className="w-36">
@@ -104,60 +118,73 @@ const Header = () => {
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-          <Link to="/">
-            <li>
-              <a>
-                <FaHome></FaHome>Home
-              </a>
-            </li>
-            </Link>
-            <Link to="/alltoys">
-            <li tabIndex={0}>
-              <a>All Toys</a>
-            </li>
-            </Link>
-
-           <Link to="/mytoys">
-            <li>
-              <a>My Toys</a>
-            </li>
-            </Link>
             
+              <li>
+              <Link to="/">
+                      Home
+                  </Link>
+              </li>
+            
+            
+              <li>
+              <Link to="/alltoys">
+                All Toys
+                </Link>
+              </li>
+           
 
+            
+              <li>
+              <Link to="/mytoys">
+                My Toys
+                </Link>
 
-            <Link to ="/addtoy">
-            <li>
-              <a>Add a Toy</a>
-            </li>
-            </Link>
-            <Link to ="/blog">
-            <li>
-              <a>Blog</a>
-            </li>
-            </Link>
+              </li>
+           
+
+            
+              <li>
+              <Link to="/addtoy">
+              Add a Toy
+                </Link>
+              </li>
+            
+            
+              <li>
+              <Link to="/blog">
+               Blog
+                </Link>
+              </li>
+           
 
             <li tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <img src="https://i.ibb.co/tMmcFSP/nahid.jpg" />
               </div>
             </li>
-            { user?.email ? <li><button onClick={handleLogOut}>Log Out</button></li>
-             : 
-             <Link to="/login">
+            {user?.email ? (
               <li>
-                <button className="btn btn-active btn-accent mr-2">
-                  Login
-                </button>
+                <button onClick={handleLogOut}>Log Out</button>
               </li>
-            </Link>
-            }
-            
+            ) : (
+              
+                <li>
+                  <Link to="/login">
+                  <button className="btn btn-active btn-accent mr-2">
+                    Login
+                  </button>
+                  </Link>
+                </li>
+              
+            )}
 
-            <Link to="/register">
+            
               <li>
+              <Link to="/register">
                 <button className="btn btn-active btn-accent">Register</button>
+                </Link>
               </li>
-            </Link>
+            
           </ul>
         </div>
       </div>
