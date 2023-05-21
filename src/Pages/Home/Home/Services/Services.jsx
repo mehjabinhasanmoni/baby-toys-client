@@ -9,7 +9,7 @@ const Services = () => {
                 <div className="services-list flex justify-center items-center gap-10 m-10">
                     <div className="support">
                         {/* Services - one */}
-                        <div className="services-one flex justify-center items-center m-5 p-2 text-left">
+                        <div className="services-one flex justify-center items-center m-5 p-2 text-left md:flex lg:flex">
 
                             
                             <div className="list-image service-img">
