@@ -59,9 +59,11 @@ const Header = () => {
                 <a>Add a Toy</a>
               </li>
               </Link>
+              <Link to ="/blog">
               <li>
                 <a>Blog</a>
               </li>
+              </Link>
 
               <li tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
@@ -121,9 +123,11 @@ const Header = () => {
               <a>Add a Toy</a>
             </li>
             </Link>
+            <Link to ="/blog">
             <li>
               <a>Blog</a>
             </li>
+            </Link>
 
             <li tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
